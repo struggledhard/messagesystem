@@ -54,7 +54,7 @@ public class MessageController {
     public void sendSms() {
         Map<String, String> map = new HashMap<>();
         map.put("phone", "12345637896");
-        map.put("sing", "模板");
+        map.put("sign", "模板");
         map.put("code", "SSS123");
         map.put("param", "{\"aa:aa\"}");
 
@@ -73,4 +73,18 @@ public class MessageController {
         date.setTime(date.getTime() + 5000);
         messageSchedule.startJob(map, date, scheduler, "mail");
     }
+
+//    // 定时发送
+//    // 批量发送邮件
+//    @GetMapping(value = "/mails")
+//    @ResponseBody
+//    public void sendMailss(String[] sendTo, String subject, String content) {
+//        Map<String, Object> map = new HashMap<>();
+//        map.put("send_to", sendTo);
+//        map.put("subject", subject);
+//        map.put("content", content);
+//        Date date = new Date();
+//        date.setTime(date.getTime() + 5000);
+//        messageSchedule.startJob(map, date, scheduler, "mail");
+//    }
 }

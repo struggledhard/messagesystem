@@ -36,6 +36,7 @@ public class MessageSchedule {
                     .build();
 
             scheduler.scheduleJob(jobDetail, trigger);
+            logger.info("任务已启动");
         } catch (SchedulerException e) {
             logger.error("发送异常", e.getMessage());
         }

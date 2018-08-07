@@ -1,17 +1,24 @@
 package com.skh.message.entity;
 
+import java.io.Serializable;
+import java.util.Date;
+
 /**
  * Created by User: skh.
  * Date: 2018/8/3 Time: 14:48.
  * Description: 邮件实体
  */
-public class Mail {
+public class Mail implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     // 邮件主题
     private String subject;
     // 邮件内容
     private String content;
     // 接收者
     private String[] sendTo;
+    // 定时时间
+    private Date date;
 
     public String getSubject() {
         return subject;
@@ -35,5 +42,13 @@ public class Mail {
 
     public void setSendTo(String[] sendTo) {
         this.sendTo = sendTo;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }

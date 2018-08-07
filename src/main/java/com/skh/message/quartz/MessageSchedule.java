@@ -17,7 +17,7 @@ import java.util.Map;
 public class MessageSchedule {
     private final Logger logger = LoggerFactory.getLogger(MessageSchedule.class);
 
-    public void startJob(Map<String, String> map, Date date, Scheduler scheduler, String type) {
+    public void startJob(Map<String, Object> map, Date date, Scheduler scheduler, String type) {
         try {
             JobDataMap dataMap = new JobDataMap(map);
 

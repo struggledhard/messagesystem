@@ -40,11 +40,11 @@ public class MessageJob extends QuartzJobBean {
         map = jobExecutionContext.getJobDetail().getJobDataMap();
         //mapParam = map.getWrappedMap();
         if (map.get("type").equals("mail")) {
-            jmsTemplate.convertAndSend(queueMail, map);
+            jmsTemplate.convertAndSend(queueMail, map.get("message"));
             logger.info("邮件已发送");
         }
         if (map.get("type").equals("sms")) {
-            jmsTemplate.convertAndSend(smsQueue, map);
+            jmsTemplate.convertAndSend(smsQueue, map.get("message"));
             logger.info("短信已发送");
         }
     }

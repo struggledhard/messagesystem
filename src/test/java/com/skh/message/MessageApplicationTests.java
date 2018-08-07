@@ -33,9 +33,11 @@ public class MessageApplicationTests {
 
     private String senTo = "1224341153@qq.com";
 
+    String[] sendTo = {"1224341153@qq.com"};
+
     @Test
     public void setSimpleMail() throws Exception {
-        simpleMail.sendSimpleMail(senTo, "简单邮件", "你好");
+        simpleMail.sendSimpleMail(sendTo, "简单邮件", "你好");
     }
 
     @Test
@@ -76,6 +78,6 @@ public class MessageApplicationTests {
 
         String mailContent = templateEngine.process("mailtemplate", context);
 
-        simpleMail.sendSimpleMail(senTo, "模板邮件", mailContent);
+        simpleMail.sendSimpleMail(sendTo, "模板邮件", mailContent);
     }
 }

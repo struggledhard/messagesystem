@@ -23,7 +23,7 @@ public class SimpleMail implements SendSimpleMail {
     private String from = "1224341153@qq.com";
 
     @Override
-    public void sendSimpleMail(String sendTo, String subject, String content) {
+    public void sendSimpleMail(String[] sendTo, String subject, String content) {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
 
         mailMessage.setFrom(from);

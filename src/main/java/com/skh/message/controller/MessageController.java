@@ -1,5 +1,7 @@
 package com.skh.message.controller;
 
+import com.skh.message.entity.Mail;
+import com.skh.message.entity.Sms;
 import com.skh.message.quartz.MessageSchedule;
 import org.quartz.Scheduler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,34 +43,37 @@ public class MessageController {
     @GetMapping(value = "/mail")
     @ResponseBody
     public void sendMail() {
-        Map<String, String> map = new HashMap<>();
-        map.put("send_to", "1224341153@qq.com");
-        map.put("subject", "简单邮件");
-        map.put("content", "你好");
+        String[] sendTo = {"1224341153@qq.com"};
+        Mail mail = new Mail();
+        mail.setSendTo(sendTo);
+        mail.setSubject("简单邮件");
+        mail.setContent("你好");
 
-        jmsTemplate.convertAndSend(mailQueue, map);
+        jmsTemplate.convertAndSend(mailQueue, mail);
     }
 
     @GetMapping(value = "/sms")
     @ResponseBody
     public void sendSms() {
-        Map<String, String> map = new HashMap<>();
-        map.put("phone", "12345637896");
-        map.put("sign", "模板");
-        map.put("code", "SSS123");
-        map.put("param", "{\"aa:aa\"}");
-
-        jmsTemplate.convertAndSend(smsQueue, map);
+        //String s = "{\"name\":\"" + name + "\"}";
+        Sms sms = new Sms();
+        sms.setPhone("13885110356");
+        sms.setParam("{\"name\":\"skh\"}");
+        jmsTemplate.convertAndSend(smsQueue, sms);
     }
 
     // 定时发送
     @GetMapping(value = "/mails")
     @ResponseBody
     public void sendMails() {
-        Map<String, String> map = new HashMap<>();
-        map.put("send_to", "1224341153@qq.com");
-        map.put("subject", "简单邮件");
-        map.put("content", "你好");
+        Map<String, Object> map = new HashMap<>();
+
+        String[] sendTo = {"1224341153@qq.com"};
+        Mail mail = new Mail();
+        mail.setSendTo(sendTo);
+        mail.setSubject("简单邮件");
+        mail.setContent("你好");
+        map.put("message", mail);
         Date date = new Date();
         date.setTime(date.getTime() + 5000);
         messageSchedule.startJob(map, date, scheduler, "mail");

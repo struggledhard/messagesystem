@@ -1,5 +1,7 @@
 package com.skh.message.service;
 
+import com.skh.message.entity.Mail;
+import com.skh.message.entity.Sms;
 import com.skh.message.mail.simple.SendSimpleMail;
 import com.skh.message.sms.SendSms;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,18 +24,16 @@ public class MessageService {
     private SendSms sendSms;
 
     @JmsListener(destination = "mail-queue")
-    public void sendMail(Map<String, String> map) {
-        simpleMail.sendSimpleMail(map.get("send_to"),
-                map.get("subject"),
-                map.get("content"));
+    public void sendMail(Mail mail) {
+//        String[] sendTos = (String[]) map.get("send_to");
+//        String subject = (String) map.get("subject");
+//        String content = (String) map.get("content");
+        simpleMail.sendSimpleMail(mail.getSendTo(), mail.getSubject(), mail.getContent());
     }
 
     @JmsListener(destination = "sms-queue")
-    public void sendSms(Map<String, String> map) {
-        sendSms.sendSms(map.get("phone"),
-                map.get("sign"),
-                map.get("code"),
-                map.get("param"),
+    public void sendSms(Sms sms) {
+        sendSms.sendSms(sms.getPhone(), "孙开华", "SMS_141615964", sms.getParam(),
                 null, null);
     }
 }

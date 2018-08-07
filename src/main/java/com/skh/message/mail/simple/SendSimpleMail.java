@@ -6,5 +6,5 @@ package com.skh.message.mail.simple;
  * Description: 简单邮件接口
  */
 public interface SendSimpleMail {
-    void sendSimpleMail(String sendTo, String subject, String content);
+    void sendSimpleMail(String[] sendTo, String subject, String content);
 }

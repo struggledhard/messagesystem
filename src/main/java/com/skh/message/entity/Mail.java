@@ -1,5 +1,8 @@
 package com.skh.message.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -18,6 +21,7 @@ public class Mail implements Serializable {
     // 接收者
     private String[] sendTo;
     // 定时时间
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date date;
 
     public String getSubject() {

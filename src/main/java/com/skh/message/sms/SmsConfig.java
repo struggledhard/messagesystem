@@ -13,6 +13,6 @@ public class SmsConfig {
     public static final String domain = "dysmsapi.aliyuncs.com";
 
     // TODO 此处需要替换成开发者自己的AK(在阿里云访问控制台寻找)
-    public static final String accessKeyId = "you_accessKeyId";
-    public static final String accessKeySecret = "you_accessKeySecret";
+    public static final String accessKeyId = "accessKeyId";
+    public static final String accessKeySecret = "accessKeySecret";
 }
